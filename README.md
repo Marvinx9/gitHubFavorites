@@ -21,3 +21,4 @@ Projeto desenvolvido com as seguintes tecnologias:
 ## 💻 Projeto
 
 O Github-Favorites é um aplicação com finalidade de treinar o conceito de API(endpoint), Async/await e LocalStorage.
+- [Visite o projeto online](https://gitfavoritesproject.netlify.app/)
