@@ -1,0 +1,206 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  :root {
+    font-size: 62.5%;
+  
+    --ff-primary: 'Poppins', sans-serif;
+  
+    --text-color: #303030;
+  
+    --hue: 194;
+    --primary-color: hsl(var(--hue), 100%, 63%);
+  }
+  
+  body {
+    font-size: 1.6rem;
+    color: var(--text-color);
+    background-color: rgb(250, 254, 255);
+  }
+  
+  /*Padrão de acessibilidade: Screen reader only (apenas leitor de tela) - Serve para acessibilidade (se colocassemos apenas display none no label - o leitor de tela não iria ler o label (dificultando para pessoas com deficiencias visuais))*/
+  .sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    /*overflow (significa transbordar) ao colocar como hidden (escondido) estamos dizendo que o elemento não transborda da sua caixa, portanto ele fica escondido (pois o tamanho da nossa caixa definido acima é minusculo) ou seja ele existe porém é um pontinho minusculo*/
+    overflow: hidden;
+    /*clip (grampo) rect (retangulo) - estamos construindo um retângulo zerado em valor */
+    clip: rect(0, 0, 0, 0);
+    /*white-space(espaços em branco - ou seja ele captura os espaços em branco do texto) - o nowrap : Vários espaços em branco são recolhidos em um, mas o texto não passa para a próxima linha. (o nowrap retira todos os espaços em branco do texto e coloca tudo junto em uma linha - não permite a quebra de linha)*/
+    white-space: nowrap; /*TESTE! SEM O CLIP E O OVERFLOW*/
+    border-width: 0; /*Largura da borda*/
+  }
+  
+  /*Ou seja tudo dentro do body (todos os seletores)*/
+  body * {
+    font-family: var(--ff-primary);
+  }
+  
+  #app {
+    max-width: 50rem;
+    margin: 0 auto;
+  
+    padding: 2rem;
+  }
+  
+  header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  
+    margin: 2.5rem 0;
+  }
+  
+  header h1 {
+    font-size: 2rem;
+    text-transform: uppercase;
+  }
+  
+  header .search {
+    display: flex;
+    align-items: center;
+  }
+  
+  .search input {
+    height: 3.2rem;
+    border: 1px solid #cccccc;
+    border-radius: 0.4rem 0 0 0.4rem;
+    /*Em cima e embaixo 0 - laterais 0.8rem*/
+    padding: 0 0.8rem;
+  }
+  
+  .search input:focus {
+    outline: 1px solid var(--primary-color);
+  }
+  
+  .search button {
+    background-color: var(--primary-color);
+  
+    height: 3.2rem;
+  
+    border: none;
+    border-radius: 0 0.4rem 0.4rem 0;
+  
+    padding: 0 1rem;
+  
+    cursor: pointer;
+  }
+  
+  .search button:focus {
+    outline: 1px solid var(--primary-color);
+  }
+  
+  .search button:hover {
+    /*filter altera as propriedades da cores do elemento (brightness é o brilho da cor)*/
+    filter: brightness(1.2);
+  }
+  
+  /*=====Tabela=====*/
+  
+  table {
+    width: 100%;
+  
+    /*Colapso da fronteira (border-callapse - captura as bordas que ficam entre um elemento e outro) ao atribuir collapse como valor - as delimitações somem - TESTE!*/
+    border-collapse: collapse;
+  
+    /*Sombreamento da caixa: 1º eixo x (esquerda para direita), 2º eixo y (de cima para baixo), 3º blur (borrão - embaçamento)  , 4º espalhamento (para onde ela vai crescer)  , 5º cor (geralmente com opacidade rgba (para deixa a cor mais opaca menos definida) */
+    box-shadow: 0 1.5rem 2rem -1rem rgba(0, 0, 0, 0.3);
+  }
+  
+  table * {
+    font-size: 1.4rem;
+    color: var(--text-color);
+  }
+  
+  /* Não funciona assim - não dá para atribuir a linha de th 
+  table thead {
+    border-radius: 50px;
+  } */
+  
+  /*THEAD*/
+  
+  table th {
+    background-color: var(--primary-color);
+    text-align: left;
+    font-weight: 400;
+    padding: 1.5rem;
+  }
+  
+  /*Primeiro filho*/
+  table th:first-child {
+    /*Ou seja na borda superior a esquerda atribua um border-radius de:*/
+    border-top-left-radius: 0.4rem;
+  }
+  
+  /*Ultimo filho*/
+  table th:last-child {
+    border-top-right-radius: 0.4rem;
+  }
+  
+  /*TBODY*/
+  
+  /*As linhas do tbody - para fazer efeito escuro e claro linha a linha*/
+  /*table tr:nth-child(even) pegaria os pares*/
+  table tr {
+    background-color: #eeeeee;
+  }
+  
+  /*Todas as colunas que os filhos são impares (odd) - pares (even)*/
+  table tr:nth-child(odd) {
+    background-color: #dddddd;
+  }
+  
+  table td {
+    text-align: left;
+    padding: 1.5rem;
+  }
+  
+  td.user {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+  
+  td.user img {
+    width: 5rem;
+    height: 5rem;
+  
+    /*object-fit (ajuste do objeto) - Havendo a necessidade da imagem encaixar (cover = cobrir) a altura e largura definidas acima*/
+    object-fit: cover;
+    /*Border radius em 50% deixa o caixa em formato arrendondado (circular)*/
+    border-radius: 50%;
+  }
+  
+  td.user a {
+    text-decoration: none;
+  }
+  
+  td.user a p {
+    font-weight: 600;
+  }
+  
+  td .remove {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  
+    height: 1.2rem;
+  
+    background-color: transparent;
+    border: none;
+  
+    cursor: pointer;
+  
+    color: rgb(190, 16, 16);
+    transition: 0.2s;
+  }
+  
+  td .remove:hover {
+    transform: scale(1.2);
+  }
